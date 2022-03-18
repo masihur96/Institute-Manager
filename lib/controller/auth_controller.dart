@@ -1,15 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fcm_notification/views/auth/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-
+import 'package:im_app_student/view/login_screen.dart';
 
 class AuthController extends GetxController {
   CreateMyUser({String? email, String? password, String? name}) {
     FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email!, password: password!)
-        .then((value)async {
+        .then((value) async {
       String uid = value.user!.uid;
+
       /// Todo:
       /// pass token
 
@@ -18,7 +18,6 @@ class AuthController extends GetxController {
         'Email': email,
         'Password': password,
         'followId': [],
-
       }).then((value) => Get.off(() => LoginScreen()));
     }).catchError((e) {
       print(e.toString());
