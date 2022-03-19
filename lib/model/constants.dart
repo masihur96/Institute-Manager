@@ -15,6 +15,12 @@ class IMTextStyle {
     fontSize: 30,
     color: IMColors.primaryColor,
   );
+  static const TextStyle IMHeaderWhite = TextStyle(
+    fontWeight: FontWeight.w900,
+    fontFamily: "Typography",
+    fontSize: 30,
+    color: IMColors.white,
+  );
 
   static const TextStyle IMSubHeader = TextStyle(
     fontWeight: FontWeight.bold,
@@ -22,10 +28,16 @@ class IMTextStyle {
     fontFamily: "Roboto",
     color: IMColors.greyColor,
   );
+  static const TextStyle IMSubHeaderWhite = TextStyle(
+    fontWeight: FontWeight.bold,
+    fontSize: 20,
+    fontFamily: "Roboto",
+    color: IMColors.white,
+  );
 
   static const TextStyle IMBodytext = TextStyle(
     fontWeight: FontWeight.w500,
-    fontSize: 10,
+    fontSize: 15,
     fontFamily: "Roboto",
     color: IMColors.greyColor,
   );

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:im_app_student/model/constants.dart';
 import 'package:im_app_student/view/nav_bar/account_nav.dart';
+import 'package:im_app_student/view/nav_bar/chat_screen.dart';
 import 'package:im_app_student/view/nav_bar/fees_nav.dart';
 import 'package:im_app_student/view/nav_bar/home_nav.dart';
 import 'package:im_app_student/view/nav_bar/learn_nav.dart';
@@ -71,7 +72,27 @@ class _HomeScreenState extends State<HomeScreen>
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        elevation: 0.0,
+        title: Row(
+          children: [
+            const Text("INSTITUTE MANAGER"),
+            Expanded(
+                child: IconButton(
+                    onPressed: () {}, icon: Icon(Icons.notifications)))
+          ],
+        ),
+        centerTitle: true,
         backgroundColor: IMColors.primaryColor,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 8.0),
+          child: Image.asset("assets/images/on_board_icon.png"),
+        ),
+        // actions: [
+        //
+        // ],
+      ),
+      endDrawer: Column(
+        children: [],
       ),
       body: navScreen[_bottomNavIndex],
       floatingActionButton: ScaleTransition(
@@ -86,6 +107,8 @@ class _HomeScreenState extends State<HomeScreen>
           onPressed: () {
             _animationController.reset();
             _animationController.forward();
+            Navigator.push(
+                context, MaterialPageRoute(builder: (_) => ChatScreen()));
           },
         ),
       ),

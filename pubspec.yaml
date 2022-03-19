@@ -41,6 +41,7 @@ dependencies:
   animated_icon_button:
   animated_bottom_navigation_bar: ^0.3.2
   circular_reveal_animation:
+  marquee: ^2.2.1
 
 
   # The following adds the Cupertino Icons font to your application.
