@@ -1,16 +1,9 @@
 import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:im_app_student/model/constants.dart';
-import 'package:im_app_student/model/custom_size.dart';
-import 'package:im_app_student/model/notification_badge.dart';
-import 'package:im_app_student/model/push_notification_model.dart';
 import 'package:im_app_student/view/dashboard_screen.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:overlay_support/overlay_support.dart';
 
 class OnBoardScreen extends StatefulWidget {
   const OnBoardScreen({Key? key}) : super(key: key);
@@ -25,79 +18,64 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
   UpdateType? updateType;
 
   //cloude massaging
-  late final FirebaseMessaging _messaging;
-  late int _totalNotificationCounter;
-  //model
-  PushNotification? _notificationInfo;
-  void registerNotification() async {
-    await Firebase.initializeApp();
-    _messaging = FirebaseMessaging.instance;
-
-    // three type of state in notification
-    //not determined(null) , granted(true) , and decline (false)
-
-    NotificationSettings settings = await _messaging.requestPermission(
-      alert: true,
-      badge: true,
-      provisional: false,
-      sound: true,
-    );
-    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-      print("User granted the permission");
-
-      //main message
-
-      FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-        PushNotification notification = PushNotification(
-          title: message.notification!.title,
-          body: message.notification!.body,
-          dataTitle: message.data['title'],
-          dataBody: message.data['body'],
-        );
-        setState(() {
-          _totalNotificationCounter++;
-          _notificationInfo = notification;
-        });
-
-        if (notification != null) {
-          showSimpleNotification(Text(_notificationInfo!.title!),
-              leading: NotificationBadege(
-                  totalNotification: _totalNotificationCounter),
-              subtitle: Text(_notificationInfo!.body!),
-              background: Colors.cyan.shade700,
-              duration: Duration(seconds: 2));
-        }
-      });
-    } else {
-      print("User decline");
-    }
-  }
+  // late final FirebaseMessaging _messaging;
+  // late int _totalNotificationCounter;
+  // //model
+  // PushNotification? _notificationInfo;
+  // void registerNotification() async {
+  //   await Firebase.initializeApp();
+  //   _messaging = FirebaseMessaging.instance;
+  //
+  //   // three type of state in notification
+  //   //not determined(null) , granted(true) , and decline (false)
+  //
+  //   NotificationSettings settings = await _messaging.requestPermission(
+  //     alert: true,
+  //     badge: true,
+  //     provisional: false,
+  //     sound: true,
+  //   );
+  //   if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+  //     print("User granted the permission");
+  //
+  //     //main message
+  //
+  //     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+  //       PushNotification notification = PushNotification(
+  //         title: message.notification!.title,
+  //         body: message.notification!.body,
+  //         dataTitle: message.data['title'],
+  //         dataBody: message.data['body'],
+  //       );
+  //       setState(() {
+  //         _totalNotificationCounter++;
+  //         _notificationInfo = notification;
+  //       });
+  //
+  //       if (notification != null) {
+  //         showSimpleNotification(Text(_notificationInfo!.title!),
+  //             leading: NotificationBadege(
+  //                 totalNotification: _totalNotificationCounter),
+  //             subtitle: Text(_notificationInfo!.body!),
+  //             background: Colors.cyan.shade700,
+  //             duration: Duration(seconds: 2));
+  //       }
+  //     });
+  //   } else {
+  //     print("User decline");
+  //   }
+  // }
 
   @override
   void initState() {
     setState(() {
-      _totalNotificationCounter = 0;
+      // _totalNotificationCounter = 0;
     });
-    registerNotification();
+    //  registerNotification();
 
     liquidController = LiquidController();
 
     super.initState();
-    // FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-    //   final snackBar = SnackBar(
-    //     content: Text(message.data["title"]),
-    //     action: SnackBarAction(
-    //       label: "Go",
-    //       onPressed: () {},
-    //     ),
-    //   );
-    //
-    //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    //
-    //   if (message.notification != null) {
-    //     print('Message also contained a notification: ${message.notification}');
-    //   }
-    // });
   }
 
   final pages = [
@@ -120,15 +98,15 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
             children: <Widget>[
               Text(
                 "Hi",
-                style: AVLTextStyle.avlHeader,
+                style: IMTextStyle.IMHeader,
               ),
               Text(
                 "It's Me",
-                style: AVLTextStyle.avlHeader,
+                style: IMTextStyle.IMHeader,
               ),
               Text(
                 "Sahdeep",
-                style: AVLTextStyle.avlHeader,
+                style: IMTextStyle.IMHeader,
               ),
             ],
           ),
@@ -154,15 +132,15 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
             children: <Widget>[
               Text(
                 "Take a",
-                style: AVLTextStyle.avlHeader,
+                style: IMTextStyle.IMHeader,
               ),
               Text(
                 "look at",
-                style: AVLTextStyle.avlHeader,
+                style: IMTextStyle.IMHeader,
               ),
               Text(
                 "Liquid Swipe",
-                style: AVLTextStyle.avlHeader,
+                style: IMTextStyle.IMHeader,
               ),
             ],
           ),
@@ -188,15 +166,15 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
             children: <Widget>[
               Text(
                 "Liked?",
-                style: AVLTextStyle.avlHeader,
+                style: IMTextStyle.IMHeader,
               ),
               Text(
                 "Fork!",
-                style: AVLTextStyle.avlHeader,
+                style: IMTextStyle.IMHeader,
               ),
               Text(
                 "Give Star!",
-                style: AVLTextStyle.avlHeader,
+                style: IMTextStyle.IMHeader,
               ),
             ],
           ),
@@ -222,15 +200,15 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
             children: <Widget>[
               Text(
                 "Can be",
-                style: AVLTextStyle.avlHeader,
+                style: IMTextStyle.IMHeader,
               ),
               Text(
                 "Used for",
-                style: AVLTextStyle.avlHeader,
+                style: IMTextStyle.IMHeader,
               ),
               Text(
                 "Onboarding Design",
-                style: AVLTextStyle.avlHeader,
+                style: IMTextStyle.IMHeader,
               ),
             ],
           ),
@@ -256,15 +234,15 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
             children: <Widget>[
               Text(
                 "Do",
-                style: AVLTextStyle.avlHeader,
+                style: IMTextStyle.IMHeader,
               ),
               Text(
                 "Try it",
-                style: AVLTextStyle.avlHeader,
+                style: IMTextStyle.IMHeader,
               ),
               Text(
                 "Thank You",
-                style: AVLTextStyle.avlHeader,
+                style: IMTextStyle.IMHeader,
               ),
             ],
           ),
@@ -281,13 +259,13 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
       ),
     );
     double zoom = 1.0 + (2.0 - 1.0) * selectedness;
-    return new Container(
+    return SizedBox(
       width: 25.0,
-      child: new Center(
-        child: new Material(
+      child: Center(
+        child: Material(
           color: Colors.white,
           type: MaterialType.circle,
-          child: new Container(
+          child: SizedBox(
             width: 8.0 * zoom,
             height: 8.0 * zoom,
           ),
@@ -315,18 +293,6 @@ class _OnBoardScreenState extends State<OnBoardScreen> {
               padding: EdgeInsets.all(20),
               child: Column(
                 children: <Widget>[
-                  NotificationBadege(
-                      totalNotification: _totalNotificationCounter),
-                  _notificationInfo != null
-                      ? Column(
-                          children: [
-                            Text(
-                                "TITLE:${_notificationInfo!.dataTitle ?? _notificationInfo!.title}"),
-                            Text(
-                                "TITLE:${_notificationInfo!.dataBody ?? _notificationInfo!.body}"),
-                          ],
-                        )
-                      : Container(),
                   Expanded(child: SizedBox()),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

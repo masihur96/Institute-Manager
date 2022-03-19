@@ -32,13 +32,15 @@ dependencies:
   flutter:
     sdk: flutter
   liquid_swipe: ^2.1.1
-  overlay_support: ^1.2.1
   firebase_auth: ^3.3.11
   cloud_firestore:
   flutter_local_notifications: ^9.4.0
   http:
-  provider: ^6.0.2
   get:
+  awesome_circular_chart: ^1.0.0
+  animated_icon_button:
+  animated_bottom_navigation_bar: ^0.3.2
+  circular_reveal_animation:
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -90,6 +92,9 @@ flutter:
     - family: Roboto
       fonts:
         - asset: assets/fonts/Roboto-Regular.ttf
+    - family: Typography
+      fonts:
+        - asset: assets/fonts/Typography times.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:

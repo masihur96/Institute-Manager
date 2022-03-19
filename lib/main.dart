@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:im_app_student/model/local_push_notification.dart';
-import 'package:im_app_student/view/on_board_screen.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:im_app_student/view/home_screen.dart';
+import 'package:im_app_student/view/login_screen.dart';
 import 'package:im_app_student/view/welcome_screen.dart';
-import 'package:overlay_support/overlay_support.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // If you're going to use other Firebase services in the background, such as Firestore,
@@ -29,14 +29,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return OverlaySupport(
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: const WelcomeScreen(),
+    return GetMaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
       ),
+      home: const IMLoginScreen(),
     );
   }
 }

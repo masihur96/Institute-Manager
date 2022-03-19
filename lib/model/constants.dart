@@ -1,40 +1,40 @@
 import 'package:flutter/material.dart';
 
-class AVLColors {
-  static const Color primaryColor = Color(0xFF20252B);
-  static const Color secondaryColor = Color(0xFF949292);
-  static const Color facebookButtonColor = Color(0xFF3B5998);
+class IMColors {
+  static const Color primaryColor = Color(0xFF8205f7);
+  static const Color secondaryColor = Color(0xFFccf381);
+  static const Color greyColor = Color(0xFF373A36);
   static const Color googleButtonColor = Color(0xFF4285F4);
   static const Color white = Colors.white;
 }
 
-class AVLTextStyle {
-  static const TextStyle avlHeader = TextStyle(
+class IMTextStyle {
+  static const TextStyle IMHeader = TextStyle(
     fontWeight: FontWeight.w900,
-    fontFamily: "Roboto",
-    fontSize: 13,
-    color: AVLColors.primaryColor,
+    fontFamily: "Typography",
+    fontSize: 30,
+    color: IMColors.primaryColor,
   );
 
-  static const TextStyle avlSubHeader = TextStyle(
+  static const TextStyle IMSubHeader = TextStyle(
     fontWeight: FontWeight.bold,
-    fontSize: 12,
+    fontSize: 20,
     fontFamily: "Roboto",
-    color: AVLColors.secondaryColor,
+    color: IMColors.greyColor,
   );
 
-  static const TextStyle avlBodytext = TextStyle(
+  static const TextStyle IMBodytext = TextStyle(
     fontWeight: FontWeight.w500,
     fontSize: 10,
     fontFamily: "Roboto",
-    color: AVLColors.secondaryColor,
+    color: IMColors.greyColor,
   );
 
   static const TextStyle testFormLettering = TextStyle(
     fontWeight: FontWeight.w500,
     fontSize: 12,
     fontFamily: "Roboto",
-    color: AVLColors.secondaryColor,
+    color: IMColors.greyColor,
   );
 
   static const TextStyle buttonText = TextStyle(

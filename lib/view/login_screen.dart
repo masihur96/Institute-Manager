@@ -1,74 +1,132 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:awesome_circular_chart/awesome_circular_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
-import 'package:im_app_student/view/dashboard_screen.dart';
-import 'package:im_app_student/view/signup_screen.dart';
+import 'package:im_app_student/model/constants.dart';
+import 'package:im_app_student/model/custom_size.dart';
+import 'package:im_app_student/model/custom_widget/im_text_form_field.dart';
+import 'package:im_app_student/view/home_screen.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class IMLoginScreen extends StatefulWidget {
+  const IMLoginScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  _IMLoginScreenState createState() => _IMLoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController emailcontroller = TextEditingController();
-  TextEditingController passwordcontroller = TextEditingController();
-
+class _IMLoginScreenState extends State<IMLoginScreen> {
+  final _formKey = GlobalKey<FormState>();
+  final GlobalKey<AnimatedCircularChartState> _chartKey =
+      GlobalKey<AnimatedCircularChartState>();
+  String? _phone;
+  String? _studentID;
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      body: Container(
-        margin: EdgeInsets.symmetric(horizontal: 10,vertical: 20),
-
-        height: double.infinity,
-        child: Form(
-          child: Column(
-            children: [
-              const SizedBox(height: 40),
-              TextFormField(
-                controller: emailcontroller,
-                decoration: const InputDecoration(
-                  hintText: 'Email',
-                  border: OutlineInputBorder(),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Image.asset(
+              "assets/images/login_icon.png",
+              width: screenSize(context, 1),
+              height: screenSize(context, .9),
+              fit: BoxFit.cover,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18.0),
+              child: Text(
+                "Log-in",
+                style: IMTextStyle.IMHeader,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: 30.0, vertical: screenSize(context, .1)),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Phone No",
+                      style: IMTextStyle.IMSubHeader,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10.0),
+                      child: IMTextFormField(
+                        hintText: "Phone Number",
+                        onSaved: (String? value) {
+                          setState(() {
+                            _phone = value;
+                          });
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: screenSize(context, .05),
+                    ),
+                    Text(
+                      "Student ID",
+                      style: IMTextStyle.IMSubHeader,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10.0),
+                      child: IMTextFormField(
+                        hintText: "Student ID",
+                        onSaved: (String? value) {
+                          setState(() {
+                            _studentID = value;
+                          });
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: screenSize(context, .05),
+                    ),
+                    Center(
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (_) => HomeScreen()));
+                        },
+                        child: AnimatedCircularChart(
+                          edgeStyle: SegmentEdgeStyle.round,
+                          key: _chartKey,
+                          size: Size(80.0, 80.0),
+                          initialChartData: <CircularStackEntry>[
+                            CircularStackEntry(
+                              <CircularSegmentEntry>[
+                                CircularSegmentEntry(
+                                  _phone == "" ? 0 : 50,
+                                  IMColors.primaryColor,
+                                  rankKey: 'completed',
+                                ),
+                                CircularSegmentEntry(
+                                  _studentID == "" ? 0 : 50,
+                                  IMColors.secondaryColor,
+                                  rankKey: 'remaining',
+                                ),
+                              ],
+                              rankKey: 'progress',
+                            ),
+                          ],
+                          chartType: CircularChartType.Radial,
+                          percentageValues: true,
+                          holeLabel: 'GO',
+                          labelStyle: TextStyle(
+                            color: IMColors.primaryColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24.0,
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
                 ),
               ),
-              const SizedBox(
-                height: 25,
-              ),
-              TextFormField(
-                controller: passwordcontroller,
-                decoration: const InputDecoration(
-                  hintText: 'Password',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              const SizedBox(
-                height: 25,
-              ),
-              ElevatedButton(
-                onPressed: () {
-
-
-                  FirebaseAuth.instance
-                      .signInWithEmailAndPassword(email: emailcontroller.text, password: passwordcontroller.text,)
-                      .then((value) {
-                    Get.to(DeshBoardScreen());
-                  });
-
-                },
-                child: Text('Sign in'),
-              ),
-
-              MaterialButton(
-                onPressed: ()  {
-                  Get.to(() =>  SignUpScreen(),);
-                },
-                child:const Text('Do not have account'),
-              )
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

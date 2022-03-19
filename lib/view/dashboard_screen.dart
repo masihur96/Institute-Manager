@@ -6,7 +6,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:im_app_student/model/local_push_notification.dart';
-import 'package:im_app_student/view/signup_screen.dart';
 
 class DeshBoardScreen extends StatefulWidget {
   const DeshBoardScreen({Key? key}) : super(key: key);
@@ -16,6 +15,7 @@ class DeshBoardScreen extends StatefulWidget {
 }
 
 class _DeshBoardScreenState extends State<DeshBoardScreen> {
+  //updated
   bool isLoading = false;
 
   storeNotificationToken() async {
@@ -52,7 +52,8 @@ class _DeshBoardScreenState extends State<DeshBoardScreen> {
           await http.post(Uri.parse('https://fcm.googleapis.com/fcm/send'),
               headers: <String, String>{
                 'Content-Type': 'application/json',
-                'Authorization': 'key=ADD-YOUR-SERVER-KEY-HERE'
+                'Authorization':
+                    'key=AAAA0AU-dRY:APA91bGTU4i9BNlbI8nqBZ_qnB9QlvJxwifnT8GpTBcBRS591MfNSovGOhQ36pLXW82mg9jjfGYfBAPKJDXDkPEO8bc3GfpbErU_CGVDXlu5cPGOv2XFU8_ydN_CYP0LvHy4Nz9gTX6r'
               },
               body: jsonEncode(<String, dynamic>{
                 'notification': <String, dynamic>{
@@ -109,21 +110,6 @@ class _DeshBoardScreenState extends State<DeshBoardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            FirebaseAuth.instance.signOut();
-
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (ctx) => SignUpScreen(),
-              ),
-            );
-          },
-          icon: Icon(Icons.arrow_back_ios),
-        ),
-      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           sendNotificationToTopic('FLutter Force uploaded a video');
