@@ -1,13 +1,16 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:im_app_student/model/constants.dart';
+import 'package:im_app_student/model/custom_size.dart';
 import 'package:im_app_student/view/nav_bar/account_nav.dart';
 import 'package:im_app_student/view/nav_bar/chat_screen.dart';
 import 'package:im_app_student/view/nav_bar/fees_nav.dart';
 import 'package:im_app_student/view/nav_bar/home_nav.dart';
 import 'package:im_app_student/view/nav_bar/learn_nav.dart';
+import 'package:im_app_student/view/notification_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -74,11 +77,40 @@ class _HomeScreenState extends State<HomeScreen>
       appBar: AppBar(
         elevation: 0.0,
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const Text("INSTITUTE MANAGER"),
-            Expanded(
-                child: IconButton(
-                    onPressed: () {}, icon: Icon(Icons.notifications)))
+            Stack(
+              children: [
+                CircleAvatar(
+                  backgroundColor: IMColors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.all(1.0),
+                    child: CircleAvatar(
+                      backgroundColor: IMColors.primaryColor,
+                      child: IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => NotificationScreen()));
+                          },
+                          icon: Icon(Icons.notifications)),
+                    ),
+                  ),
+                ),
+                const Positioned(
+                    right: 0,
+                    top: 0,
+                    child: CircleAvatar(
+                        radius: 8,
+                        backgroundColor: Colors.white,
+                        child: Text(
+                          "2",
+                          style: TextStyle(fontSize: 10),
+                        ))),
+              ],
+            )
           ],
         ),
         centerTitle: true,
@@ -91,8 +123,121 @@ class _HomeScreenState extends State<HomeScreen>
         //
         // ],
       ),
-      endDrawer: Column(
-        children: [],
+      endDrawer: SafeArea(
+        child: Container(
+          width: screenSize(context, .8),
+          color: IMColors.white,
+          child: Column(
+            children: [
+              Container(
+                height: screenSize(context, .525),
+                width: screenSize(context, 1),
+                color: IMColors.primaryColor,
+                child: Column(
+                  children: [
+                    Container(
+                      height: screenSize(context, .23),
+                      width: screenSize(context, .23),
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                              image: AssetImage("assets/images/login_icon.png"),
+                              fit: BoxFit.fill),
+                          border: Border.all(width: 1, color: IMColors.white)),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Text(
+                        "Mizanur Rohman",
+                        style: IMTextStyle.IMHeaderWhite,
+                      ),
+                    ),
+                    Text(
+                      "01712923903",
+                      style: IMTextStyle.IMSubHeaderWhite,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 5.0),
+                              child: Text(
+                                "Class; Six",
+                                style: IMTextStyle.IMSubHeaderWhite,
+                              ),
+                            ),
+                            Text(
+                              "Type; Reguler",
+                              style: IMTextStyle.IMSubHeaderWhite,
+                            ),
+                          ],
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 5.0),
+                              child: Text(
+                                "Section; Nurani",
+                                style: IMTextStyle.IMSubHeaderWhite,
+                              ),
+                            ),
+                            Text(
+                              "Roll; Six",
+                              style: IMTextStyle.IMSubHeaderWhite,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              ListTile(
+                title: Text("Notice Board"),
+                leading: Icon(Icons.developer_board),
+                onTap: () {},
+              ),
+              ListTile(
+                title: Text("Exam"),
+                leading: Icon(Icons.reddit_outlined),
+                onTap: () {},
+              ),
+              ListTile(
+                title: Text("Attendance"),
+                leading: Icon(Icons.present_to_all),
+                onTap: () {},
+              ),
+              ListTile(
+                title: const Text("Complain"),
+                leading: Icon(Icons.warning_rounded),
+                onTap: () {},
+              ),
+              ListTile(
+                title: Text("Comments Box"),
+                leading: Icon(Icons.comment_bank_outlined),
+                onTap: () {},
+              ),
+              ListTile(
+                title: Text("Setting"),
+                leading: Icon(Icons.settings),
+                onTap: () {},
+              ),
+              ListTile(
+                title: Text("Log-Out"),
+                leading: Icon(Icons.logout_outlined),
+                onTap: () {},
+              )
+            ],
+          ),
+        ),
       ),
       body: navScreen[_bottomNavIndex],
       floatingActionButton: ScaleTransition(

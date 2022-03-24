@@ -6,6 +6,7 @@ class IMColors {
   static const Color greyColor = Color(0xFF373A36);
   static const Color googleButtonColor = Color(0xFF4285F4);
   static const Color white = Colors.white;
+  static const Color red = Colors.redAccent;
 }
 
 class IMTextStyle {
@@ -28,6 +29,12 @@ class IMTextStyle {
     fontFamily: "Roboto",
     color: IMColors.greyColor,
   );
+  static const TextStyle IMSubHeaderSecondery = TextStyle(
+    fontWeight: FontWeight.bold,
+    fontSize: 20,
+    fontFamily: "Roboto",
+    color: IMColors.secondaryColor,
+  );
   static const TextStyle IMSubHeaderWhite = TextStyle(
     fontWeight: FontWeight.bold,
     fontSize: 20,
@@ -40,6 +47,12 @@ class IMTextStyle {
     fontSize: 15,
     fontFamily: "Roboto",
     color: IMColors.greyColor,
+  );
+  static const TextStyle IMBodytextWhite = TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 15,
+    fontFamily: "Roboto",
+    color: IMColors.white,
   );
 
   static const TextStyle testFormLettering = TextStyle(
