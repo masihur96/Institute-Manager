@@ -1,18 +1,23 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
-import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:im_app_student/model/constants.dart';
 import 'package:im_app_student/model/custom_size.dart';
+import 'package:im_app_student/view/drawer_view/attendence_screan.dart';
+import 'package:im_app_student/view/drawer_view/comment_box.dart';
+import 'package:im_app_student/view/drawer_view/complain_screen.dart';
+import 'package:im_app_student/view/drawer_view/exam_screen.dart';
+import 'package:im_app_student/view/drawer_view/notice_board_screen.dart';
+import 'package:im_app_student/view/drawer_view/settings_screen.dart';
 import 'package:im_app_student/view/nav_bar/account_nav.dart';
 import 'package:im_app_student/view/nav_bar/chat_screen.dart';
 import 'package:im_app_student/view/nav_bar/fees_nav.dart';
 import 'package:im_app_student/view/nav_bar/home_nav.dart';
 import 'package:im_app_student/view/nav_bar/learn_nav.dart';
-import 'package:im_app_student/view/notification_screen.dart';
 
 class HomeScreen extends StatefulWidget {
+  static const String id = "home_screen";
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
@@ -35,7 +40,12 @@ class _HomeScreenState extends State<HomeScreen>
   ];
   List<String> navBarTitle = ["Home", "Learn", "Fees", "Account"];
 
-  List<Widget> navScreen = [HomeNavBar(), LearnNav(), FeesNav(), AccountNav()];
+  List<Widget> navScreen = [
+    const HomeNavBar(),
+    const LearnNav(),
+    const FeesNav(),
+    const AccountNav()
+  ];
 
   @override
   void initState() {
@@ -48,12 +58,12 @@ class _HomeScreenState extends State<HomeScreen>
     SystemChrome.setSystemUIOverlayStyle(systemTheme);
 
     _animationController = AnimationController(
-      duration: Duration(seconds: 1),
+      duration: const Duration(seconds: 1),
       vsync: this,
     );
     curve = CurvedAnimation(
       parent: _animationController,
-      curve: Interval(
+      curve: const Interval(
         0.5,
         1.0,
         curve: Curves.fastOutSlowIn,
@@ -65,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen>
     ).animate(curve);
 
     Future.delayed(
-      Duration(seconds: 1),
+      const Duration(seconds: 1),
       () => _animationController.forward(),
     );
   }
@@ -90,12 +100,9 @@ class _HomeScreenState extends State<HomeScreen>
                       backgroundColor: IMColors.primaryColor,
                       child: IconButton(
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) => NotificationScreen()));
+                            Navigator.pushNamed(context, ChatScreen.id);
                           },
-                          icon: Icon(Icons.notifications)),
+                          icon: const Icon(Icons.notifications)),
                     ),
                   ),
                 ),
@@ -140,19 +147,19 @@ class _HomeScreenState extends State<HomeScreen>
                       width: screenSize(context, .23),
                       decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          image: DecorationImage(
+                          image: const DecorationImage(
                               image: AssetImage("assets/images/login_icon.png"),
                               fit: BoxFit.fill),
                           border: Border.all(width: 1, color: IMColors.white)),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
                         "Mizanur Rohman",
                         style: IMTextStyle.IMHeaderWhite,
                       ),
                     ),
-                    Text(
+                    const Text(
                       "01712923903",
                       style: IMTextStyle.IMSubHeaderWhite,
                     ),
@@ -162,10 +169,9 @@ class _HomeScreenState extends State<HomeScreen>
                         Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                          children: const [
                             Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 5.0),
+                              padding: EdgeInsets.symmetric(vertical: 5.0),
                               child: Text(
                                 "Class; Six",
                                 style: IMTextStyle.IMSubHeaderWhite,
@@ -180,10 +186,9 @@ class _HomeScreenState extends State<HomeScreen>
                         Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                          children: const [
                             Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 5.0),
+                              padding: EdgeInsets.symmetric(vertical: 5.0),
                               child: Text(
                                 "Section; Nurani",
                                 style: IMTextStyle.IMSubHeaderWhite,
@@ -201,38 +206,56 @@ class _HomeScreenState extends State<HomeScreen>
                 ),
               ),
               ListTile(
-                title: Text("Notice Board"),
-                leading: Icon(Icons.developer_board),
-                onTap: () {},
+                title: const Text("Notice Board"),
+                leading: const Icon(Icons.developer_board),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, NoticeBoard.id);
+                },
               ),
               ListTile(
-                title: Text("Exam"),
-                leading: Icon(Icons.reddit_outlined),
-                onTap: () {},
+                title: const Text("Exam"),
+                leading: const Icon(Icons.reddit_outlined),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, ExamScreen.id);
+                },
               ),
               ListTile(
-                title: Text("Attendance"),
-                leading: Icon(Icons.present_to_all),
-                onTap: () {},
+                title: const Text("Attendance"),
+                leading: const Icon(Icons.present_to_all),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, AttendanceScreen.id);
+                },
               ),
               ListTile(
                 title: const Text("Complain"),
-                leading: Icon(Icons.warning_rounded),
-                onTap: () {},
+                leading: const Icon(Icons.warning_rounded),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, ComplainScreen.id);
+                },
               ),
               ListTile(
-                title: Text("Comments Box"),
-                leading: Icon(Icons.comment_bank_outlined),
-                onTap: () {},
+                title: const Text("Comments Box"),
+                leading: const Icon(Icons.comment_bank_outlined),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, CommentBoxScreen.id);
+                },
               ),
               ListTile(
-                title: Text("Setting"),
-                leading: Icon(Icons.settings),
-                onTap: () {},
+                title: const Text("Setting"),
+                leading: const Icon(Icons.settings),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, SettingScreen.id);
+                },
               ),
               ListTile(
-                title: Text("Log-Out"),
-                leading: Icon(Icons.logout_outlined),
+                title: const Text("Log-Out"),
+                leading: const Icon(Icons.logout_outlined),
                 onTap: () {},
               )
             ],
@@ -252,8 +275,7 @@ class _HomeScreenState extends State<HomeScreen>
           onPressed: () {
             _animationController.reset();
             _animationController.forward();
-            Navigator.push(
-                context, MaterialPageRoute(builder: (_) => ChatScreen()));
+            Navigator.pushNamed(context, ChatScreen.id);
           },
         ),
       ),

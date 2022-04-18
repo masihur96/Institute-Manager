@@ -10,6 +10,7 @@ import 'package:im_app_student/view/notification_view/login_screen.dart';
 import 'package:im_app_student/view/notification_view/signup_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
+  static const String id = "welcome_screen";
   const WelcomeScreen({Key? key}) : super(key: key);
 
   @override

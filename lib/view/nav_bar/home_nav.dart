@@ -4,6 +4,7 @@ import 'package:im_app_student/model/constants.dart';
 import 'package:im_app_student/model/custom_size.dart';
 import 'package:im_app_student/model/custom_widget/book_card.dart';
 import 'package:im_app_student/model/custom_widget/teacher_card.dart';
+import 'package:im_app_student/view/nav_bar/chat_screen.dart';
 import 'package:marquee/marquee.dart';
 
 class HomeNavBar extends StatefulWidget {
@@ -127,7 +128,10 @@ class _HomeNavBarState extends State<HomeNavBar> {
                       ),
                     ],
                   ),
-                  const TeacherCard(
+                  TeacherCard(
+                    onPressed: () {
+                      Navigator.pushNamed(context, ChatScreen.id);
+                    },
                     teacherImage: "assets/images/login_icon.png",
                     teacherName: "HM Mizanur Rohman",
                     teacherDesignation: "Assistant Teacher Math",

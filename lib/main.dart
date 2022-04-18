@@ -3,8 +3,16 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:im_app_student/model/local_push_notification.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:im_app_student/view/drawer_view/attendence_screan.dart';
+import 'package:im_app_student/view/drawer_view/comment_box.dart';
+import 'package:im_app_student/view/drawer_view/complain_screen.dart';
+import 'package:im_app_student/view/drawer_view/exam_screen.dart';
+import 'package:im_app_student/view/drawer_view/notice_board_screen.dart';
+import 'package:im_app_student/view/drawer_view/settings_screen.dart';
 import 'package:im_app_student/view/home_screen.dart';
 import 'package:im_app_student/view/login_screen.dart';
+import 'package:im_app_student/view/nav_bar/chat_screen.dart';
+import 'package:im_app_student/view/notification_screen.dart';
 import 'package:im_app_student/view/welcome_screen.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -34,7 +42,20 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const IMLoginScreen(),
+      initialRoute: IMLoginScreen.id,
+      routes: {
+        IMLoginScreen.id: (context) => const IMLoginScreen(),
+        WelcomeScreen.id: (context) => const WelcomeScreen(),
+        HomeScreen.id: (context) => const HomeScreen(),
+        NoticeBoard.id: (context) => const NoticeBoard(),
+        ExamScreen.id: (context) => const ExamScreen(),
+        AttendanceScreen.id: (context) => const AttendanceScreen(),
+        ComplainScreen.id: (context) => const ComplainScreen(),
+        CommentBoxScreen.id: (context) => const CommentBoxScreen(),
+        SettingScreen.id: (context) => const SettingScreen(),
+        NotificationScreen.id: (context) => const NotificationScreen(),
+        ChatScreen.id: (context) => ChatScreen(),
+      },
     );
   }
 }

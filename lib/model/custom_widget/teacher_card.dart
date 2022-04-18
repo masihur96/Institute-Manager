@@ -7,8 +7,14 @@ class TeacherCard extends StatelessWidget {
   final String? teacherName;
   final String? teacherDesignation;
 
+  final void Function()? onPressed;
+
   const TeacherCard(
-      {Key? key, this.teacherImage, this.teacherName, this.teacherDesignation})
+      {Key? key,
+      this.teacherImage,
+      this.teacherName,
+      this.teacherDesignation,
+      this.onPressed})
       : super(key: key);
 
   @override
@@ -52,18 +58,21 @@ class TeacherCard extends StatelessWidget {
                 ),
               ],
             ),
-            Container(
-              height: screenSize(context, .1),
-              width: screenSize(context, .1),
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: IMColors.primaryColor,
-              ),
-              child: const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Icon(
-                  Icons.chat,
-                  color: IMColors.white,
+            InkWell(
+              onTap: onPressed,
+              child: Container(
+                height: screenSize(context, .1),
+                width: screenSize(context, .1),
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: IMColors.primaryColor,
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(
+                    Icons.chat,
+                    color: IMColors.white,
+                  ),
                 ),
               ),
             )

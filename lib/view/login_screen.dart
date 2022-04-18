@@ -6,6 +6,7 @@ import 'package:im_app_student/model/custom_widget/im_text_form_field.dart';
 import 'package:im_app_student/view/home_screen.dart';
 
 class IMLoginScreen extends StatefulWidget {
+  static const String id = "im_login_screen";
   const IMLoginScreen({Key? key}) : super(key: key);
 
   @override
@@ -87,8 +88,7 @@ class _IMLoginScreenState extends State<IMLoginScreen> {
                     Center(
                       child: InkWell(
                         onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (_) => HomeScreen()));
+                          Navigator.pushNamed(context, HomeScreen.id);
                         },
                         child: AnimatedCircularChart(
                           edgeStyle: SegmentEdgeStyle.round,

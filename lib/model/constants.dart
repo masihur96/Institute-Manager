@@ -64,9 +64,9 @@ class IMTextStyle {
 
   static const TextStyle buttonText = TextStyle(
     fontWeight: FontWeight.bold,
-    fontSize: 12,
+    fontSize: 15,
     fontFamily: "Roboto",
-    color: Colors.white,
+    color: IMColors.primaryColor,
   );
 }
 
