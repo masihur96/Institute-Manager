@@ -18,7 +18,7 @@ class FeesCard extends StatelessWidget {
               : IMColors.googleButtonColor.withAlpha(100),
       elevation: 10,
       child: Stack(
-        overflow: Overflow.visible,
+        clipBehavior: Clip.antiAlias,
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),

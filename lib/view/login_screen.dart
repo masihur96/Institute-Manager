@@ -1,4 +1,5 @@
 import 'package:awesome_circular_chart/awesome_circular_chart.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:im_app_student/model/constants.dart';
 import 'package:im_app_student/model/custom_size.dart';
@@ -87,8 +88,51 @@ class _IMLoginScreenState extends State<IMLoginScreen> {
                     ),
                     Center(
                       child: InkWell(
-                        onTap: () {
-                          Navigator.pushNamed(context, HomeScreen.id);
+                        onTap: () async {
+                          //Fetal error
+                          // await FirebaseCrashlytics.instance
+                          //     .recordError('error', null,
+                          //         reason: 'a fatal error',
+                          //         // Pass in 'fatal' argument
+                          //         fatal: true);
+
+                          // Non-Fetal error
+                          // await FirebaseCrashlytics.instance.recordError(
+                          //     'error', null,
+                          //     reason: 'a non-fatal error');
+                          _formKey.currentState?.save();
+
+                          await FirebaseCrashlytics.instance
+                              .setCustomKey('str_key', 'hello');
+                          // if (_phone!.length < 3) {
+                          //   try {
+                          //     await FirebaseCrashlytics.instance
+                          //         .recordError('This is error', null,
+                          //             reason: 'By testing',
+                          //             // Pass in 'fatal' argument
+                          //             fatal: true);
+                          //     //    print("Try");
+                          //
+                          //   } catch (e, s) {
+                          //     print("Catch");
+                          //     await FirebaseCrashlytics.instance
+                          //         .recordError(e, null, reason: s, fatal: true);
+                          //     // FirebaseCrashlytics.instance
+                          //     //     .recordError('Try Catch', s);
+                          //   }
+                          // } else {
+                          //   await FirebaseCrashlytics.instance.recordError(
+                          //       'error', null,
+                          //       reason: 'a non-fatal error');
+                          // }
+
+                          // try {
+                          //   throw 'error_example';
+                          // } catch (e, s) {
+                          //   FirebaseCrashlytics.instance.recordError(e, s);
+                          // }
+
+                          //  Navigator.pushNamed(context, HomeScreen.id);
                         },
                         child: AnimatedCircularChart(
                           edgeStyle: SegmentEdgeStyle.round,

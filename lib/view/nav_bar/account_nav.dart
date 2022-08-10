@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:im_app_student/model/constants.dart';
 import 'package:im_app_student/model/custom_size.dart';
@@ -18,7 +19,7 @@ class _AccountNavState extends State<AccountNav> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Stack(
-            overflow: Overflow.visible,
+            clipBehavior: Clip.antiAlias,
             children: [
               Container(
                 height: screenSize(context, .5),
@@ -32,7 +33,7 @@ class _AccountNavState extends State<AccountNav> {
                 child: Column(
                   children: [
                     Stack(
-                      overflow: Overflow.visible,
+                      clipBehavior: Clip.antiAlias,
                       children: [
                         Card(
                           child: SizedBox(

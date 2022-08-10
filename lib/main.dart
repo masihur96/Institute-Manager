@@ -1,3 +1,4 @@
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:im_app_student/model/local_push_notification.dart';
@@ -28,6 +29,7 @@ Future<void> main() async {
   LocalNotificationService.initialize();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
   runApp(const MyApp());
 }
 
@@ -37,6 +39,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+   // FirebaseCrashlytics.instance.crash();
     return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
